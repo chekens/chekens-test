@@ -1,11 +1,107 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Schoology</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>Schoology</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#111827;color:#f8fafc;font-family:system-ui,Arial,sans-serif}
+header{background:#1f2937;border-bottom:1px solid #344054;padding:22px max(20px,calc((100% - 1100px)/2));display:flex;justify-content:space-between;align-items:center}
+h1{margin:0;font-size:32px}
+main{max-width:1100px;margin:auto;padding:36px 20px 65px}
+.subtitle{color:#94a3b8;margin-top:4px}
+input{width:100%;padding:15px;background:#253247;border:1px solid #44516a;border-radius:12px;color:white;font-size:16px;margin:16px 0 8px}
+input:focus{outline:2px solid #67e8f9}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:18px;margin-top:22px}
+.game{background:#1f2937;border:1px solid #334155;border-radius:15px;padding:26px 18px;min-height:205px;text-align:center;color:inherit;display:block;text-decoration:none}
+.game h3{margin:10px 0}
+.game .emoji{font-size:50px;margin-bottom:8px}
+.game p{color:#94a3b8;margin:9px 0;font-size:14px;line-height:1.5}
+a.game:hover,a.game:focus{border-color:#67e8f9;transform:translateY(-2px);outline:none}
+.status{display:inline-block;padding:5px 10px;border-radius:99px;font-size:12px;font-weight:700;background:#1e3a46;color:#a5f3fc}
+.status.pending{background:#374151;color:#cbd5e1}
+.game.pending{opacity:.75}
+footer{color:#94a3b8;text-align:center;margin-top:40px;font-size:13px}
+</style>
 </head>
 <body>
-  <h1>Cheken is working!</h1>
-  <p>My new website is being set up.</p>
+
+<header>
+  <h1>🐔 Cheken</h1>
+  <strong>🎮 Games</strong>
+</header>
+
+<main>
+<h2>Your games. Your playground.</h2>
+<p class="subtitle">Browser games hosted on Cheken.</p>
+
+<label for="search">Search games</label>
+<input id="search" placeholder="Search games..." oninput="filterGames()">
+
+<h2>All Games</h2>
+
+<div class="games">
+
+  <a class="game"
+     href="https://ryryreno.github.io/Cheken/games/minecraft/mc.html"
+     data-name="minecraft eaglercraft">
+    <div class="emoji">⛏️</div>
+    <h3>Minecraft</h3>
+    <span class="status">▶ Play</span>
+    <p>Your existing Minecraft game.</p>
+  </a>
+
+  <a class="game"
+     href="https://ryryreno.github.io/Cheken/games/minecraft-new/"
+     data-name="minecraft 1.12.2 eaglercraft">
+    <div class="emoji">🛡️</div>
+    <h3>Minecraft 1.12.2</h3>
+    <span class="status">▶ Play</span>
+    <p>Explore, build, and survive in Minecraft 1.12.2!</p>
+  </a>
+
+  <a class="game"
+     href="https://ryryreno.github.io/Cheken/games/minecraft-1206/index.html"
+     data-name="minecraft 1.20.6 eaglercraft">
+    <div class="emoji">🌸</div>
+    <h3>Minecraft 1.20.6</h3>
+    <span class="status">▶ Play</span>
+    <p>Explore a modern Minecraft-style world!</p>
+  </a>
+
+  <a class="game"
+     href="https://ryryreno.github.io/Cheken/games/rocket-arena/"
+     data-name="rocket arena car soccer">
+    <div class="emoji">🏟️</div>
+    <h3>Rocket Arena</h3>
+    <span class="status">▶ Play</span>
+    <p>Free Play and Bot Matches</p>
+  </a>
+
+  <div class="game pending"
+       data-name="rocket nexus aerial rings training">
+    <div class="emoji">🎯</div>
+    <h3>Rocket Nexus</h3>
+    <span class="status pending">Not installed</span>
+    <p>Coming soon - awaiting an authorized game build.</p>
+  </div>
+
+</div>
+
+<footer>Cheken - Your games. Your playground.</footer>
+</main>
+
+<script>
+function filterGames(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  document.querySelectorAll('.game').forEach(game=>{
+    game.style.display=(game.dataset.name||'').includes(q)?'':'none';
+  });
+}
+</script>
+
 </body>
 </html>
